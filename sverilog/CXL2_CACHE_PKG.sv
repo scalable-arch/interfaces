@@ -52,14 +52,14 @@ package CXL2_CACHE_PKG;
 
     localparam  logic                   NT_DEFAULT      = 1'b0,
                                         NT_LRU          = 1'b1;
-    
+
     typedef struct {
         logic                           valid;
         logic   [4:0]                   opcode;
         logic   [11:0]                  uqid;
         logic   [1:0]                   rsvd;
     } D2H_RSP;
-    
+
     typedef struct {
         logic                           valid;
         logic   [11:0]                  uqid;
@@ -68,7 +68,7 @@ package CXL2_CACHE_PKG;
         logic                           poison;
         logic                           rsvd;
     } D2H_DATA_HDR;
-    
+
     typedef struct {
         logic                           valid;
         logic   [2:0]                   opcode;
@@ -76,7 +76,7 @@ package CXL2_CACHE_PKG;
         logic   [11:0]                  uqid;
         logic   [1:0]                   rsvd;
     } H2D_REQ;
-    
+
     typedef struct {
         logic                           valid;
         logic   [3:0]                   opcode;
@@ -94,39 +94,5 @@ package CXL2_CACHE_PKG;
         logic                           go_err;
         logic   [7:0]                   rsvd;
     } H2D_DATA_HDR;
-
-endpackage
-
-package CXL2_CACHE_PKG;
-
-    typedef struct {
-        logic                           valid;
-        logic   [3:0]                   mem_op_code;
-        logic   [1:0]                   meta_field;
-        logic   [1:0]                   meta_value;
-        logic   [2:0]                   snp_type;
-        logic   [51:5]                  address;
-        logic   [15:0]                  tag;
-        logic   [1:0]                   tc;
-        logic   [3:0]                   ld_id;
-        logic   [5:0]                   rsvd;
-    } MEM_H2D_REQ;
-
-    localparam  logic   [3:0]           H2D_REQ_OPCODE_MEM_INV              = 4'b0000,
-                                        H2D_REQ_OPCODE_MEM_RD               = 4'b0001,
-                                        H2D_REQ_OPCODE_MEM_RD_DATA          = 4'b0010,
-                                        H2D_REQ_OPCODE_MEM_RD_FWD           = 4'b0011,
-                                        H2D_REQ_OPCODE_MEM_WR_FWD           = 4'b0100,
-                                        H2D_REQ_OPCODE_MEM_SPEC_RD          = 4'b1000,
-                                        H2D_REQ_OPCODE_MEM_INV_NT           = 4'b1001;
-    localparam  logic   [1:0]           H2D_REQ_METADATA_META_STATE         = 2'b00,
-                                        H2D_REQ_METADATA_NO_OP              = 2'b11;
-    localparam  logic   [1:0]           H2D_REQ_METASTATE_INVALID           = 2'b00,
-                                        H2D_REQ_METASTATE_ANY               = 2'b10,
-                                        H2D_REQ_METASTATE_SHARED            = 2'b11;
-    localparam  logic   [2:0]           H2D_REQ_SNOOP_TYPE_NO_OP            = 3'b000,
-                                        H2D_REQ_SNOOP_TYPE_SNP_DATA         = 3'b001,
-                                        H2D_REQ_SNOOP_TYPE_SNP_CUR          = 3'b010,
-                                        H2D_REQ_SNOOP_TYPE_SNP_INV          = 3'b011;
 
 endpackage
